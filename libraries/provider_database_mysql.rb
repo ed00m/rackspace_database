@@ -20,14 +20,14 @@ require 'chef/provider'
 
 class Chef
   class Provider
-    class Database
+    class RackspaceDatabase
       class Mysql < Chef::Provider
         include Chef::Mixin::ShellOut
 
         def load_current_resource
           Gem.clear_paths
           require 'mysql'
-          @current_resource = Chef::Resource::Database.new(@new_resource.name)
+          @current_resource = Chef::Resource::RackspaceDatabase.new(@new_resource.name)
           @current_resource.database_name(@new_resource.database_name)
           @current_resource
         end

@@ -2,6 +2,9 @@ database Cookbook CHANGELOG
 =======================
 This file is used to list changes made in each version of the database cookbook.
 
+v2.0.0
+------
+Rackspace Fork
 
 v1.6.0
 ------

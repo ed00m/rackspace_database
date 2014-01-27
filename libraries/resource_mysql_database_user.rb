@@ -21,12 +21,12 @@ require File.join(File.dirname(__FILE__), 'provider_database_mysql_user')
 
 class Chef
   class Resource
-    class MysqlDatabaseUser < Chef::Resource::DatabaseUser
+    class RackspaceMysqlDatabaseUser < Chef::Resource::RackspaceDatabaseUser
 
       def initialize(name, run_context=nil)
         super
         @resource_name = :mysql_database_user
-        @provider = Chef::Provider::Database::MysqlUser
+        @provider = Chef::Provider::RackspaceDatabase::MysqlUser
       end
 
     end

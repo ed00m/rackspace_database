@@ -21,7 +21,7 @@ require File.join(File.dirname(__FILE__), 'provider_database_postgresql_schema')
 
 class Chef
   class Resource
-    class PostgresqlDatabaseSchema < Chef::Resource::Database
+    class RackspacePostgresqlDatabaseSchema < Chef::Resource::RackspaceDatabase
 
       def initialize(name, run_context=nil)
         super
@@ -29,7 +29,7 @@ class Chef
         @schema_name = name
         @allowed_actions.push(:create, :drop)
         @action = :create
-        @provider = Chef::Provider::Database::PostgresqlSchema
+        @provider = Chef::Provider::RackspaceDatabase::PostgresqlSchema
       end
 
       def schema_name(arg=nil)

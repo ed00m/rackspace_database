@@ -20,14 +20,14 @@ require File.join(File.dirname(__FILE__), 'provider_database_postgresql')
 
 class Chef
   class Provider
-    class Database
-      class PostgresqlSchema < Chef::Provider::Database::Postgresql
+    class RackspaceDatabase
+      class PostgresqlSchema < Chef::Provider::RackspaceDatabase::Postgresql
         include Chef::Mixin::ShellOut
 
         def load_current_resource
           Gem.clear_paths
           require 'pg'
-          @current_resource = Chef::Resource::PostgresqlDatabaseSchema.new(@new_resource.name)
+          @current_resource = Chef::Resource::RackspacePostgresqlDatabaseSchema.new(@new_resource.name)
           @current_resource.schema_name(@new_resource.schema_name)
           @current_resource
         end

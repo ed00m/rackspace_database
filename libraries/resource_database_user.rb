@@ -20,7 +20,7 @@ require File.join(File.dirname(__FILE__), 'resource_database')
 
 class Chef
   class Resource
-    class DatabaseUser < Chef::Resource::Database
+    class RackspaceDatabaseUser < Chef::Resource::RackspaceDatabase
 
       def initialize(name, run_context=nil)
         super
