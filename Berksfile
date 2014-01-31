@@ -9,6 +9,6 @@ site :opscode
 metadata
 
 group :integration do
-  rackspace_cookbook 'mysql', '~> 3.0'
+  rackspace_cookbook 'mysql', '~> 5.0'
   rackspace_cookbook 'postgresql', '~> 4.0'
 end
