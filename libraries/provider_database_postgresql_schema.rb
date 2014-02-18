@@ -21,6 +21,7 @@ require File.join(File.dirname(__FILE__), 'provider_database_postgresql')
 class Chef
   class Provider
     class RackspaceDatabase
+      # allows controling schema within postgresql
       class PostgresqlSchema < Chef::Provider::RackspaceDatabase::Postgresql
         include Chef::Mixin::ShellOut
 
@@ -34,16 +35,16 @@ class Chef
 
         def action_create
           unless exists?
-          begin
-            if new_resource.owner
-              db(@new_resource.database_name).query("CREATE SCHEMA \"#{@new_resource.schema_name}\" AUTHORIZATION \"#{@new_resource.owner}\"")
-            else
-              db(@new_resource.database_name).query("CREATE SCHEMA \"#{@new_resource.schema_name}\"")
+            begin
+              if new_resource.owner
+                db(@new_resource.database_name).query("CREATE SCHEMA \"#{@new_resource.schema_name}\" AUTHORIZATION \"#{@new_resource.owner}\"")
+              else
+                db(@new_resource.database_name).query("CREATE SCHEMA \"#{@new_resource.schema_name}\"")
+              end
+              @new_resource.updated_by_last_action(true)
+            ensure
+              close
             end
-            @new_resource.updated_by_last_action(true)
-          ensure
-            close
-          end
           end
         end
 
@@ -59,6 +60,7 @@ class Chef
         end
 
         private
+
         def exists?
           begin
             exists = db(@new_resource.database_name).query("SELECT schema_name FROM information_schema.schemata WHERE schema_name='#{@new_resource.schema_name}'").num_tuples != 0

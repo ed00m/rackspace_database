@@ -20,11 +20,11 @@ require File.join(File.dirname(__FILE__), 'resource_database')
 
 class Chef
   class Resource
+    # base resource that controls database users, generalized for both mysql and postgresql
     class RackspaceDatabaseUser < Chef::Resource::RackspaceDatabase
-
-      def initialize(name, run_context=nil)
+      def initialize(name, run_context = nil)
         super
-        @resource_name = :database_user
+        @resource_name = 'rackspace_database_user'
         @username = name
 
         @database_name = nil
@@ -37,63 +37,62 @@ class Chef
         @action = :create
       end
 
-      def database_name(arg=nil)
+      def database_name(arg = nil)
         set_or_return(
           :database_name,
           arg,
-          :kind_of => String
+          kind_of: String
         )
       end
 
-      def username(arg=nil)
+      def username(arg = nil)
         set_or_return(
           :username,
           arg,
-          :kind_of => String
+          kind_of: String
         )
       end
 
-      def password(arg=nil)
+      def password(arg = nil)
         set_or_return(
           :password,
           arg,
-          :kind_of => String,
-          :required => true
+          kind_of: String,
+          required: true
         )
       end
 
-      def table(arg=nil)
+      def table(arg = nil)
         set_or_return(
           :table,
           arg,
-          :kind_of => String
+          kind_of: String
         )
       end
 
-      def host(arg=nil)
+      def host(arg = nil)
         set_or_return(
           :host,
           arg,
-          :kind_of => String
+          kind_of: String
         )
       end
 
-      def privileges(arg=nil)
+      def privileges(arg = nil)
         set_or_return(
           :privileges,
           arg,
-          :kind_of => Array
+          kind_of: Array
         )
       end
 
-      def grant_option(arg=nil)
+      def grant_option(arg = nil)
         set_or_return(
           :grant_option,
           arg,
-          :kind_of => [ TrueClass, FalseClass ], :default => false
+          kind_of: [TrueClass, FalseClass], default: false
         )
       end
-
     end
   end
 end

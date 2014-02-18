@@ -22,14 +22,13 @@ require File.join(File.dirname(__FILE__), 'provider_database_postgresql')
 
 class Chef
   class Resource
+    # RackspacePostgresqlDatabase is an instansiation of the general database resource
     class RackspacePostgresqlDatabase < Chef::Resource::RackspaceDatabase
-
-      def initialize(name, run_context=nil)
+      def initialize(name, run_context = nil)
         super
-        @resource_name = :postgresql_database
+        @resource_name = 'rackspace_postgresql_database'
         @provider = Chef::Provider::RackspaceDatabase::Postgresql
       end
-
     end
   end
 end

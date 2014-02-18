@@ -1,4 +1,3 @@
-#
 # Author:: Seth Chisamore (<schisamo@opscode.com>)
 # Copyright:: Copyright (c) 2011 Opscode, Inc.
 # License:: Apache License, Version 2.0
@@ -21,14 +20,13 @@ require File.join(File.dirname(__FILE__), 'provider_database_mysql_user')
 
 class Chef
   class Resource
+    # general resource for mysql database users
     class RackspaceMysqlDatabaseUser < Chef::Resource::RackspaceDatabaseUser
-
-      def initialize(name, run_context=nil)
+      def initialize(name, run_context = nil)
         super
-        @resource_name = :mysql_database_user
+        @resource_name = 'rackspace_mysql_database_user'
         @provider = Chef::Provider::RackspaceDatabase::MysqlUser
       end
-
     end
   end
 end

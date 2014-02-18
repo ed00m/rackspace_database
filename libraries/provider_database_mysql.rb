@@ -21,6 +21,7 @@ require 'chef/provider'
 class Chef
   class Provider
     class RackspaceDatabase
+      # creates and controls databases
       class Mysql < Chef::Provider
         include Chef::Mixin::ShellOut
 
@@ -74,6 +75,7 @@ class Chef
         end
 
         private
+
         def exists?
           db.list_dbs.include?(@new_resource.database_name)
         end
@@ -91,13 +93,14 @@ class Chef
             connection.set_server_option ::Mysql::OPTION_MULTI_STATEMENTS_ON
             connection
           end
+          rescue
+            Chef::Log.info("Failed to initialize #{@new_resource}")
         end
 
         def close
-          @db.close rescue nil
+          # @db.close rescue nil
           @db = nil
         end
-
       end
     end
   end

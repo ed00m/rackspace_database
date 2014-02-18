@@ -17,4 +17,4 @@
 # limitations under the License.
 #
 
-include_recipe "rackspace_postgresql::ruby"
+include_recipe 'rackspace_postgresql::ruby'

@@ -20,38 +20,38 @@ require 'chef/resource'
 
 class Chef
   class Resource
+    # base database resource, abstracted for both mysql and postgresql
     class RackspaceDatabase < Chef::Resource
-
-      def initialize(name, run_context=nil)
+      def initialize(name, run_context = nil)
         super
-        @resource_name = :database
+        @resource_name = 'rackspace_database'
         @database_name = name
         @allowed_actions.push(:create, :drop, :query)
         @action = :create
       end
 
-      def database_name(arg=nil)
+      def database_name(arg = nil)
         set_or_return(
           :database_name,
           arg,
-          :kind_of => String
+          kind_of: String
         )
       end
 
-      def connection(arg=nil)
+      def connection(arg = nil)
         set_or_return(
           :connection,
           arg,
-          :required => true
+          required: true
         )
       end
 
-      def sql(arg=nil, &block)
+      def sql(arg = nil, &block)
         arg ||= block
         set_or_return(
           :sql,
           arg,
-          :kind_of => [String, Proc]
+          kind_of: [String, Proc]
         )
       end
 
@@ -63,55 +63,55 @@ class Chef
         end
       end
 
-      def template(arg=nil)
+      def template(arg = nil)
         set_or_return(
           :template,
           arg,
-          :kind_of => String,
-          :default => 'DEFAULT'
+          kind_of: String,
+          default: 'DEFAULT'
         )
       end
 
-      def collation(arg=nil)
+      def collation(arg = nil)
         set_or_return(
           :collation,
           arg,
-          :kind_of => String
+          kind_of: String
         )
       end
 
-      def encoding(arg=nil)
+      def encoding(arg = nil)
         set_or_return(
           :encoding,
           arg,
-          :kind_of => String,
-          :default => 'DEFAULT'
+          kind_of: String,
+          default: 'DEFAULT'
         )
       end
 
-      def tablespace(arg=nil)
+      def tablespace(arg = nil)
         set_or_return(
           :tablespace,
           arg,
-          :kind_of => String,
-          :default => 'DEFAULT'
+          kind_of: String,
+          default: 'DEFAULT'
         )
       end
 
-      def connection_limit(arg=nil)
+      def connection_limit(arg = nil)
         set_or_return(
           :connection_limit,
           arg,
-          :kind_of => String,
-          :default => '-1'
+          kind_of: String,
+          default: '-1'
         )
       end
 
-      def owner(arg=nil)
+      def owner(arg = nil)
         set_or_return(
           :owner,
           arg,
-          :kind_of => String
+          kind_of: String
         )
       end
     end
