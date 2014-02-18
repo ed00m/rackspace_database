@@ -37,10 +37,6 @@ end
 desc 'Run all style checks'
 task style: ['style:chef', 'style:ruby']
 
-require 'rspec/core/rake_task'
-desc 'Run RSpec and ChefSpec unit tests'
-RSpec::Core::RakeTask.new(:unit)
-
 desc 'Run style and unit tests'
 task style_unit: ['style:chef', 'style:ruby', 'unit']
 
@@ -60,4 +56,4 @@ namespace :travis do
 end
 
 # The default rake task should just run it all
-task default: %w(style unit integration)
+task default: %w(style integration)
